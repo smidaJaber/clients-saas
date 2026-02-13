@@ -5,6 +5,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { SeedButton } from "./seed-button"
 
 export default function DashboardPage() {
     return (

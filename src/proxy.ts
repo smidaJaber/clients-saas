@@ -2,8 +2,8 @@
 import { type NextRequest } from 'next/server'
 import { updateSession } from '@/lib/supabase/middleware'
 
-export async function middleware(request: NextRequest) {
-    console.log("Middleware running for path:", request.nextUrl.pathname)
+export async function proxy(request: NextRequest) {
+    console.log("Proxy running for path:", request.nextUrl.pathname)
     return await updateSession(request)
 }
 

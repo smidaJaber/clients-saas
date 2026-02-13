@@ -4,12 +4,27 @@ import { UserNav } from "@/components/user-nav"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ModeToggle } from "@/components/mode-toggle"
 import { Separator } from "@/components/ui/separator"
+import { createClient } from "@/lib/supabase/server"
+import { redirect } from "next/navigation"
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
     children,
 }: {
     children: React.ReactNode
 }) {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+        redirect('/login')
+    }
+
+    const userData = {
+        name: user.user_metadata?.full_name || 'User',
+        email: user.email,
+        image: user.user_metadata?.avatar_url
+    }
+
     return (
         <div className="flex flex-col min-h-screen space-y-6">
             <header className="sticky top-0 z-40 border-b bg-background">
@@ -20,7 +35,7 @@ export default function DashboardLayout({
                         </a>
                     </div>
                     <div className="flex items-center gap-2">
-                        <UserNav />
+                        <UserNav user={userData} />
                         <ModeToggle />
                     </div>
                 </div>
