@@ -24,8 +24,8 @@ A professional platform for managing clients, invoices, and files. Built with Ne
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/client-portal-saas.git
-    cd client-portal-saas
+    git clone https://github.com/smidaJaber/clients-saas.git
+    cd clients-saas
     ```
 
 2.  **Install dependencies:**
