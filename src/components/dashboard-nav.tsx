@@ -11,7 +11,8 @@ import {
     Users,
     FileText,
     Files,
-    Settings
+    Settings,
+    CreditCard
 } from "lucide-react"
 
 interface NavProps {
@@ -76,5 +77,15 @@ export const navItems = [
         title: "Files",
         href: "/dashboard/files",
         icon: Files
+    },
+    {
+        title: "Settings",
+        href: "/dashboard/settings",
+        icon: Settings
+    },
+    {
+        title: "Billing",
+        href: "/dashboard/billing",
+        icon: CreditCard
     },
 ]

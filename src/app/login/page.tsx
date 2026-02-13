@@ -38,7 +38,12 @@ export default function LoginPage() {
                         <Input id="email" name="email" placeholder="m@example.com" required type="email" />
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="password">Password</Label>
+                        <div className="flex items-center justify-between">
+                            <Label htmlFor="password">Password</Label>
+                            <Link href="/forgot-password" className="text-sm text-muted-foreground underline">
+                                Forgot password?
+                            </Link>
+                        </div>
                         <Input id="password" name="password" required type="password" />
                     </div>
                     <Button className="w-full" type="submit" disabled={isLoading}>

@@ -53,3 +53,22 @@ export async function signout() {
     await supabase.auth.signOut()
     redirect('/login')
 }
+
+export async function resetPassword(formData: FormData) {
+    const supabase = await createClient()
+    const email = formData.get('email') as string
+
+    // Check if we assume 'localhost:3000' or need env var for redirect URL
+    const origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${origin}/auth/callback?next=/dashboard/settings`,
+    })
+
+    if (error) {
+        console.error('Reset password error:', error)
+        redirect('/forgot-password?error=Could not send reset email')
+    }
+
+    redirect('/login?message=Check your email for the reset link')
+}
